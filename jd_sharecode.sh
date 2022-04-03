@@ -27,7 +27,7 @@ fi
 
 dir_shell=/ql/shell
 . $dir_shell/share.sh
-
+HelpType="1"
 env_name=(
   FRUITSHARECODES
   PETSHARECODES
