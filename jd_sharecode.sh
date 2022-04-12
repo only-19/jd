@@ -2,18 +2,18 @@
 ## 导入通用变量与函数
 #15 3,23 * * * jd_sharecode.sh 
 #new Env('获取互助码');
-#青龙不同版本处理
-ver=`sed -n /version/p /ql/src/version.ts|tr -cd '[0-9]\n'`
-if [[ "${ver}" -ge "2107" ]] && [[ "${ver}" -lt "2120" ]]
+
+
+if [[ -d /ql/deps ]]
 then
-   cp -f /ql/repo/6dylan6_jdpro/sendNotify.js /ql/deps
+   \cp /ql/repo/6dylan6_jdpro/sendNotify.js /ql/deps
    grep '6dylan6_1124' /ql/config/task_before.sh >/dev/null 2>&1
    if [[ $? != 0 ]];then
 	   \cp /ql/repo/6dylan6_jdpro/docker/task_before.sh /ql/config/
    fi
-elif [[ "${ver}" -ge "2120" ]]
+elif [[ -d /ql/data ]]
 then
-   cp -f /ql/data/repo/6dylan6_jdpro/sendNotify.js /ql/deps
+   \cp /ql/data/repo/6dylan6_jdpro/sendNotify.js /ql/data/deps
    grep '6dylan6_1124' /ql/data/config/task_before.sh >/dev/null 2>&1
    if [[ $? != 0 ]];then
 	   \cp /ql/data/repo/6dylan6_jdpro/docker/task_before.sh /ql/data/config/
@@ -27,7 +27,9 @@ fi
 
 dir_shell=/ql/shell
 . $dir_shell/share.sh
+
 HelpType="1"
+
 env_name=(
   FRUITSHARECODES
   PETSHARECODES
